@@ -31,8 +31,8 @@ int main()
 
     char opcion;
 
-    // se hace un "do-while" para que siempre se nos muestre en pantalla la posibilidad de seguir escogiendo, con la excepción que, cuando se elija <N>, se deje de mostrar
-    do
+    // se hace un "do-while" para que siempre se nos muestre en pantalla la posibilidad de seguir escogiendo, con la excepción que, cuando se elija <N>, se deje de repetir
+    while (opcion != 'N' || opcion != 'n')
     {
         std::cout << "Desea ver los episodios de alguna serie? [S] Si, [N] No: ";
         std::cin >> opcion;
@@ -91,7 +91,7 @@ int main()
             std::cout << "Opcion Invalida! Por favor introduce alguna de las opciones disponibles [S] para Si o [N] para No" << std::endl;
             continue;
         }
-    } while (opcion == 'S' || opcion == 's');
+    }
     
     return 0;
 }
