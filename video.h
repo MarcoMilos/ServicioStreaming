@@ -12,14 +12,14 @@ class Video
         std::string nombreVideo;
         std::string genero;
         std::string clasif; // clasificacion
-        int calificacion;
+        float calificacion;
         int anioLanzamiento;
         int duracion;
     // metodos publicos
     public:
         // constructor
         Video(); // por omision
-        Video(std::string, std::string, std::string, std::string, int, int, int); // constructor sobrecargado
+        Video(std::string, std::string, std::string, std::string, float, int, int); // constructor sobrecargado
 
         // destructor
         virtual ~Video();
@@ -29,7 +29,7 @@ class Video
         void setNombreVideo(std::string);
         void setGenero(std::string);
         void setClasif(std::string);
-        void setCalif(int);
+        void setCalif(float);
         void setAnLanzamiento(int);
         void setDuracion(int);
 
@@ -38,12 +38,12 @@ class Video
         std::string getNombreVideo();
         std::string getGenero();
         std::string getClasif();
-        int getCalif();
+        float getCalif();
         int getAnLanzamiento();
         int getDuracion();
 
         // metodo para la evaluacion del video
-        void calificaVideo(int);
+        void calificaVideo(float);
 
         // metodo para la impresion de datos
         virtual std::string muestraDatos(); // polimorfismo
@@ -60,7 +60,7 @@ Video::Video()
     duracion = 0;
 }
 
-Video::Video(std::string tipoVideo, std::string nombreVideo, std::string genero, std::string clasif, int calificacion, int anioLanzamiento, int duracion)
+Video::Video(std::string tipoVideo, std::string nombreVideo, std::string genero, std::string clasif, float calificacion, int anioLanzamiento, int duracion)
 {
     this -> tipoVideo = tipoVideo;
     this -> nombreVideo = nombreVideo;
@@ -89,7 +89,7 @@ void Video::setClasif(std::string clasif)
 {
     this -> clasif = clasif;
 }
-void Video::setCalif(int calificacion)
+void Video::setCalif(float calificacion)
 {
     this -> calificacion = calificacion;
 }
@@ -118,7 +118,7 @@ std::string Video::getClasif()
 {
     return clasif;
 }
-int Video::getCalif()
+float Video::getCalif()
 {
     return calificacion;
 }
@@ -131,7 +131,7 @@ int Video::getDuracion()
     return duracion;
 }
 
-void Video::calificaVideo(int calificacion)
+void Video::calificaVideo(float calificacion)
 {
     this -> calificacion = calificacion;
 }
@@ -150,5 +150,6 @@ std::string Video::muestraDatos()
 
     std::cout << "Anio de Lanzamiento: " << anioLanzamiento << std::endl;
     std::cout << "Duracion del video: " << duracion << " mins" << std::endl;
+    
     return "";
 }
