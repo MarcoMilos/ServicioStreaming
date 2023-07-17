@@ -97,6 +97,34 @@ int main()
 
     while (eval != 'S' || eval != 's')
     {
+        int multiOpt; // para decidir si mostrar las series y peliculas o no
+        // hacemos un "do-while" para que el usuario tenga la posibilidad de ver las series y peliculas disponibles ya sea después de hacer la modificacion en la calificacion como antes de hacerlo y ver el cambio de calificacion
+        do
+        {
+            std::cout << "Desea ver las series y peliculas disponibles? [1] Si, [2] No: ";
+            std::cin >> multiOpt;
+            vids = Videos.begin();
+            if (multiOpt == 1)
+            {
+                while(vids != Videos.end())
+                {
+                    std::cout << "" << (*vids) -> muestraDatos() << std::endl;
+
+                    vids++;
+                }
+                break;
+            }
+            else if (multiOpt == 2)
+            {
+                break;
+            }
+            else if (multiOpt != 1 && multiOpt != 2)
+            {
+                std::cout << "Opcion Invalida! Favor de seleccionar de las opciones disponibles [1] Si, [2] No" << std::endl;
+                continue;
+            } 
+        } while (multiOpt != 2);
+        
         std::cout << "Desea calificar algun video o serie? [C] calificar, [S] Salir: ";
         char deci; // decision
         std::cin >> eval;
@@ -110,34 +138,67 @@ int main()
             {
                 std::cout << "Cual pelicula desea calificar? 1, 2, 3 o 4: ";
                 std::cin >> peliOpt;
-                int calif; // calificacion para la pelicula declarada
+                float calif; // calificacion para la pelicula declarada
+                bool encontrado;
                 if (peliOpt == 1)
                 {
-                    std::cout << "Favor de establecer la calificacion para la primer pelicula: ";
+                    std::cout << "Favor de establecer la calificacion para la primera pelicula [1] siendo mala, [5] siendo muy buena: ";
                     std::cin >> calif;
-                    Videos.push_back(new Pelicula("Pelicula", "Spider-Man (A traves del Spider Verso)", "Ciencia Ficcion, Accion, Aventura & Animacion", "PG-13", calif, 2023, "Mejor pelicula animada, Mejor sonido, Mejores efectos especiales y mas", 130));
-                    continue;
+                    for (auto video : Videos)
+                    {
+                        Pelicula* pelicula =  dynamic_cast<Pelicula *>(video);
+                        if (pelicula && pelicula -> getNombreVideo() == "Spider-Man (A traves del Spider Verso)")
+                        {
+                            encontrado = true;
+                            pelicula -> setCalif(calif);
+                            continue;
+                        }
+                    }
                 }
                 else if (peliOpt == 2)
                 {
-                    std::cout << "Favor de establecer la calificacion para la segunda pelicula: ";
+                    std::cout << "Favor de establecer la calificacion para la segunda pelicula [1] siendo mala, [5] siendo muy buena:";
                     std::cin >> calif;
-                    Videos.push_back(new Pelicula("Pelicula", "El Sorprendente Hombre Arania", "SciFi & Accion", "PG-13", calif, 2012, "Mejor pelicula, Mejor actor, Mejor actriz, Mejor villano, Pelicula favorita y mas", 142));
-                    continue;
+                    for (auto video : Videos)
+                    {
+                        Pelicula* pelicula = dynamic_cast<Pelicula *>(video);
+                        if (pelicula && pelicula -> getNombreVideo() == "El Sorprendente Hombre Arania")
+                        {
+                            encontrado = true;
+                            pelicula -> setCalif(calif);
+                            continue;
+                        }
+                    }
                 }
                 else if (peliOpt == 3)
                 {
-                    std::cout << "Favor de establecer la calificacion para la tercer pelicula: ";
+                    std::cout << "Favor de establecer la calificacion para la tercera pelicula [1] siendo mala, [5] siendo muy buena:";
                     std::cin >> calif;
-                    Videos.push_back(new Pelicula("Pelicula", "Lucy", "SciFi & Accion", "R", calif, 2014, "Mejor actriz", 89));
-                    continue;
+                    for (auto video : Videos)
+                    {
+                        Pelicula* pelicula = dynamic_cast<Pelicula *>(video);
+                        if (pelicula && pelicula -> getNombreVideo() == "Lucy")
+                        {
+                            encontrado = true;
+                            pelicula -> setCalif(calif);
+                            continue;
+                        }
+                    }
                 }
                 else if (peliOpt == 4)
                 {
-                    std::cout << "Favor de establecer la calificacion para la cuarta pelicula: ";
+                    std::cout << "Favor de establecer la calificacion para la cuarta pelicula [1] siendo mala, [5] siendo muy buena:";
                     std::cin >> calif;
-                    Videos.push_back(new Pelicula("Pelicula", "Karate Kid", "Cine dramatico & Para toda la familia", "PG", calif, 2010, "Mejor pelicula de deportes, Mejor actor, Quimica favorita y mas", 140));
-                    continue;
+                    for (auto video : Videos)
+                    {
+                        Pelicula* pelicula = dynamic_cast<Pelicula *>(video);
+                        if (pelicula && pelicula -> getNombreVideo() == "Karate Kid")
+                        {
+                            encontrado = true;
+                            pelicula -> setCalif(calif);
+                            continue;
+                        }
+                    }
                 }
                 else if (peliOpt != 1 && peliOpt != 2 && peliOpt != 3 && peliOpt != 4)
                 {
@@ -149,27 +210,52 @@ int main()
             {
                 std::cout << "Cual serie desea calificar? 1, 2 o 3: ";
                 std::cin >> serieOpt;
+                bool encontrado;
                 int calif; // calificacion para la serie declarada
                 if (serieOpt == 1)
                 {
-                    std::cout << "Favor de establecer la calificacion para la primera serie: ";
+                    std::cout << "Favor de establecer la calificacion para la primera serie [1] siendo mala, [5] siendo muy buena:";
                     std::cin >> calif;
-                    Videos.push_back(new Serie("Serie", "The Witcher", "Serie dramatica, Basada en libros", "TV-MA", calif, 2019, 21, 3, 67));
-                    continue;
+                    for (auto video : Videos)
+                    {
+                        Serie* serie = dynamic_cast<Serie *>(video);
+                        if (serie && serie -> getNombreVideo() == "The Witcher")
+                        {
+                            encontrado = true;
+                            serie -> setCalif(calif);
+                            continue;
+                        }
+                    }
                 }
                 else if (serieOpt == 2)
                 {
-                    std::cout << "Favor de establecer la calificacion para la segunda serie: ";
+                    std::cout << "Favor de establecer la calificacion para la segunda serie [1] siendo mala, [5] siendo muy buena:";
                     std::cin >> calif;
-                    Videos.push_back(new Serie("Serie", "Sandman", "Serie dramatica, De fantasia", "TV-MA", calif, 2022, 11, 1, 64));
-                    continue;
+                    for (auto video : Videos)
+                    {
+                        Serie* serie = dynamic_cast<Serie *>(video);
+                        if (serie && serie -> getNombreVideo() == "Sandman")
+                        {
+                            encontrado = true;
+                            serie -> setCalif(calif);
+                            continue;
+                        }
+                    }
                 }
                 else if (serieOpt == 3)
                 {
-                    std::cout << "Favor de establecer la calificacion para la tercera serie: ";
+                    std::cout << "Favor de establecer la calificacion para la tercera serie [1] siendo mala, [5] siendo muy buena:";
                     std::cin >> calif;
-                    Videos.push_back(new Serie("Serie", "Lucifer", "Serie dramatica, Sobre crimenes", "TV-14", calif, 2016, 93, 4, 55));
-                    continue;
+                    for (auto video : Videos)
+                    {
+                        Serie* serie = dynamic_cast<Serie *>(video);
+                        if (serie && serie -> getNombreVideo() == "Lucifer")
+                        {
+                            encontrado = true;
+                            serie -> setCalif(calif);
+                            continue;
+                        }
+                    }
                 }
                 else if (serieOpt != 1 && serieOpt != 2 && serieOpt != 3)
                 {
