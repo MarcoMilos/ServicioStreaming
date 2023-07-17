@@ -82,13 +82,110 @@ int main()
         }
         else if (opcion == 'N' || opcion == 'n')
         {
-            std::cout << "Perfecto, muchas gracias por ver el catalogo! Vuelva pronto :)" << std::endl;
+            std::cout << "Perfecto, muchas gracias por ver el catalogo!" << std::endl;
             break;
         }
         else if (opcion != 'S' || opcion != 's' && opcion != 'N' || opcion != 'n')
         {
             // si la respuesta no es ninguna de las opciones mencionadas anteriormente, el programa debera pedirle al usuario que seleccione alguna de las disponibles
             std::cout << "Opcion Invalida! Por favor introduce alguna de las opciones disponibles [S] para Si o [N] para No" << std::endl;
+            continue; // se le indica un "continue" para que se regrese al inicio del codigo en caso de no ser la respuesta que se esperaba recibir (en este caso sería <S> o <N>)
+        }
+    }
+        
+    char eval; // para que el usuario pueda calificar los videos ("evaluar")
+
+    while (eval != 'S' || eval != 's')
+    {
+        std::cout << "Desea calificar algun video o serie? [C] calificar, [S] Salir: ";
+        char deci; // decision
+        std::cin >> eval;
+        if (eval == 'C' || eval == 'c')
+        {
+            std::cout << "Desea calificar una serie o una pelicula? [P] Pelicula, [S] Serie: ";
+            std::cin >> deci;
+            int peliOpt; // pelicula a calificar
+            int serieOpt; // serie a calificar
+            if (deci == 'P' || deci == 'p')
+            {
+                std::cout << "Cual pelicula desea calificar? 1, 2, 3 o 4: ";
+                std::cin >> peliOpt;
+                int calif; // calificacion para la pelicula declarada
+                if (peliOpt == 1)
+                {
+                    std::cout << "Favor de establecer la calificacion para la primer pelicula: ";
+                    std::cin >> calif;
+                    Videos.push_back(new Pelicula("Pelicula", "Spider-Man (A traves del Spider Verso)", "Ciencia Ficcion, Accion, Aventura & Animacion", "PG-13", calif, 2023, "Mejor pelicula animada, Mejor sonido, Mejores efectos especiales y mas", 130));
+                    continue;
+                }
+                else if (peliOpt == 2)
+                {
+                    std::cout << "Favor de establecer la calificacion para la segunda pelicula: ";
+                    std::cin >> calif;
+                    Videos.push_back(new Pelicula("Pelicula", "El Sorprendente Hombre Arania", "SciFi & Accion", "PG-13", calif, 2012, "Mejor pelicula, Mejor actor, Mejor actriz, Mejor villano, Pelicula favorita y mas", 142));
+                    continue;
+                }
+                else if (peliOpt == 3)
+                {
+                    std::cout << "Favor de establecer la calificacion para la tercer pelicula: ";
+                    std::cin >> calif;
+                    Videos.push_back(new Pelicula("Pelicula", "Lucy", "SciFi & Accion", "R", calif, 2014, "Mejor actriz", 89));
+                    continue;
+                }
+                else if (peliOpt == 4)
+                {
+                    std::cout << "Favor de establecer la calificacion para la cuarta pelicula: ";
+                    std::cin >> calif;
+                    Videos.push_back(new Pelicula("Pelicula", "Karate Kid", "Cine dramatico & Para toda la familia", "PG", calif, 2010, "Mejor pelicula de deportes, Mejor actor, Quimica favorita y mas", 140));
+                    continue;
+                }
+                else if (peliOpt != 1 && peliOpt != 2 && peliOpt != 3 && peliOpt != 4)
+                {
+                    std::cout << "Opcion Invalida! Favor de seleccionar de las opciones disponibles [1, 2, 3, 4]" << std::endl;
+                    continue;
+                }
+            }
+            else if (deci == 'S' || deci == 's')
+            {
+                std::cout << "Cual serie desea calificar? 1, 2 o 3: ";
+                std::cin >> serieOpt;
+                int calif; // calificacion para la serie declarada
+                if (serieOpt == 1)
+                {
+                    std::cout << "Favor de establecer la calificacion para la primera serie: ";
+                    std::cin >> calif;
+                    Videos.push_back(new Serie("Serie", "The Witcher", "Serie dramatica, Basada en libros", "TV-MA", calif, 2019, 21, 3, 67));
+                    continue;
+                }
+                else if (serieOpt == 2)
+                {
+                    std::cout << "Favor de establecer la calificacion para la segunda serie: ";
+                    std::cin >> calif;
+                    Videos.push_back(new Serie("Serie", "Sandman", "Serie dramatica, De fantasia", "TV-MA", calif, 2022, 11, 1, 64));
+                    continue;
+                }
+                else if (serieOpt == 3)
+                {
+                    std::cout << "Favor de establecer la calificacion para la tercera serie: ";
+                    std::cin >> calif;
+                    Videos.push_back(new Serie("Serie", "Lucifer", "Serie dramatica, Sobre crimenes", "TV-14", calif, 2016, 93, 4, 55));
+                    continue;
+                }
+                else if (serieOpt != 1 && serieOpt != 2 && serieOpt != 3)
+                {
+                    std::cout << "Opcion Invalida! Favor de seleccionar de las opciones disponibles [1, 2, 3]" << std::endl;
+                    continue;
+                }
+            }
+        }
+        else if (eval == 'S' || eval == 's')
+        {
+            std::cout << "Perfecto! Muchas gracias por brindar tu evaluacion! Nos vemos :)" << std::endl;
+            break;
+        }
+        else if (eval != 'S' || eval != 's' && eval != 'C' || eval != 'c')
+        {
+            std::cout << "Opcion Invalida! Favor de ingresar de las opciones disponibles [C] Calificar, [S] Salir" << std::endl;
             continue;
         }
     }
