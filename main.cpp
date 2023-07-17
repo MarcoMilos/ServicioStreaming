@@ -211,7 +211,7 @@ int main()
                 std::cout << "Cual serie desea calificar? 1, 2 o 3: ";
                 std::cin >> serieOpt;
                 bool encontrado;
-                int calif; // calificacion para la serie declarada
+                float calif; // calificacion para la serie declarada
                 if (serieOpt == 1)
                 {
                     std::cout << "Favor de establecer la calificacion para la primera serie [1] siendo mala, [5] siendo muy buena:";
