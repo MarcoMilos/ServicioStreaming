@@ -85,11 +85,18 @@ int main()
             std::cout << "Perfecto, muchas gracias por ver el catalogo!" << std::endl;
             break;
         }
-        else if (opcion != 'S' || opcion != 's' && opcion != 'N' || opcion != 'n')
+        // se ingresa una excepción para comprobar si el usuario ingresó una respuesta correcta, en caso de haberse equivocado, que le muestre un mensaje y que le permita corregir su respuesta
+        try
         {
-            // si la respuesta no es ninguna de las opciones mencionadas anteriormente, el programa debera pedirle al usuario que seleccione alguna de las disponibles
-            std::cout << "Opcion Invalida! Por favor introduce alguna de las opciones disponibles [S] para Si o [N] para No" << std::endl;
-            continue; // se le indica un "continue" para que se regrese al inicio del codigo en caso de no ser la respuesta que se esperaba recibir (en este caso sería <S> o <N>)
+            if (opcion != 'S' && opcion != 's' && opcion != 'N' && opcion != 'n')
+            {
+                throw std::invalid_argument(""); // lanza una excepcion
+            }
+        }
+        catch(std::exception& e)
+        {
+            std::cout << e.what() << "Opcion Invalida! Por favor introduce alguna de las opciones disponibles [S] para Si o [N] para No" << std::endl;
+            continue;
         }
     }
         
@@ -269,9 +276,17 @@ int main()
             std::cout << "Perfecto! Muchas gracias por brindar tu evaluacion! Nos vemos :)" << std::endl;
             break;
         }
-        else if (eval != 'S' || eval != 's' && eval != 'C' || eval != 'c')
+        // se ingresa una excepción para comprobar si el usuario ingresó una respuesta correcta, en caso de haberse equivocado, que le muestre un mensaje y que le permita corregir su respuesta
+        try
         {
-            std::cout << "Opcion Invalida! Favor de ingresar de las opciones disponibles [C] Calificar, [S] Salir" << std::endl;
+            if (eval != 'S' && eval != 's' && eval != 'C' && eval != 'c')
+            {
+                throw std::invalid_argument(""); // lanza una excepción
+            }
+        }
+        catch(std::exception& e)
+        {
+            std::cout << e.what() << "Opcion Invalida! Favor de ingresar una de las opciones disponibles [C] Calificar, [S] Salir" << std::endl;
             continue;
         }
     }
