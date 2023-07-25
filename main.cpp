@@ -90,12 +90,12 @@ int main()
         {
             if (opcion != 'S' && opcion != 's' && opcion != 'N' && opcion != 'n')
             {
-                throw std::invalid_argument(""); // lanza una excepcion
+                throw std::invalid_argument("Opcion Invalida!"); // lanza una excepcion
             }
         }
-        catch(std::exception& e)
+        catch(const std::exception& e)
         {
-            std::cout << e.what() << "Opcion Invalida! Por favor introduce alguna de las opciones disponibles [S] para Si o [N] para No" << std::endl;
+            std::cout << e.what() << " Por favor introduce alguna de las opciones disponibles [S] para Si o [N] para No" << std::endl;
             continue;
         }
     }
@@ -281,12 +281,12 @@ int main()
         {
             if (eval != 'S' && eval != 's' && eval != 'C' && eval != 'c')
             {
-                throw std::invalid_argument(""); // lanza una excepción
+                throw std::invalid_argument("Opcion Invalida!"); // lanza una excepción
             }
         }
-        catch(std::exception& e)
+        catch(const std::exception& e)
         {
-            std::cout << e.what() << "Opcion Invalida! Favor de ingresar una de las opciones disponibles [C] Calificar, [S] Salir" << std::endl;
+            std::cout << e.what() << " Favor de ingresar una de las opciones disponibles [C] Calificar, [S] Salir" << std::endl;
             continue;
         }
     }
